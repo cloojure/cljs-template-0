@@ -20,7 +20,11 @@
                                :open-urls ["http://localhost:3449/index.html"]}
 
                 :compiler     {:main                 fred.core
-                               :libs                 ["resources/public/dino.js"]
+                              ;:libs                 ["resources/public/dino.js"] ; works
+                              ;:libs                 ["resources/public"] ; also works
+                               :libs                 ["resources"] ; works too (?)
+                              ;:libs <missing completely> => compiler error
+
                                :asset-path           "js/compiled/out"
                                :output-to            "resources/public/js/compiled/fred.js"
                                :output-dir           "resources/public/js/compiled/out"
