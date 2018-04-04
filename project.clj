@@ -20,10 +20,14 @@
                                :open-urls ["http://localhost:3449/index.html"]}
 
                 :compiler     {:main                 fred.core
-                              ;:libs                 ["resources/public/dino.js"] ; works
-                              ;:libs                 ["resources/public"] ; also works
-                               :libs                 ["resources"] ; works too (?)
-                              ;:libs <missing completely> => compiler error
+                               ;:libs                 ["resources/public/dino.js"] ; works
+                               ;:libs                 ["resources/public"] ; also works
+                               ;:libs                 ["resources"] ; works a 3rd way (why?)
+                               ;:libs <missing completely> => compiler error
+
+                               :externs              ["dino-externs.js"]
+                               :foreign-libs         [{:file     "dino.js"
+                                                       :provides ["dno"]}]
 
                                :asset-path           "js/compiled/out"
                                :output-to            "resources/public/js/compiled/fred.js"
