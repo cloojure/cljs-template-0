@@ -1,0 +1,1 @@
+var AppMeasurement = function() {}
