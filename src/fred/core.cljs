@@ -1,5 +1,6 @@
 (ns fred.core
-    (:require [dno] ))
+    (:require [dno]
+              [appmeas] ))
 
 (enable-console-print!)
 
@@ -10,6 +11,7 @@ Go ahead and edit it and see reloading in action. Again, or not.")
 (println "globalObject:  " js/globalObject)
 (println "(-> % .-b (+ 5) =>" (-> js/globalObject .-b (+ 5)))
 (println "(-> (js/makeFriendly) .-message) =>" (-> (js/makeFriendly) .-message))
+(println "(AppMeasurement.) =>" (js/AppMeasurement.))  ; need trailing `.` for constructor
 
 ; define your app data so that it doesn't get over-written on reload
 (defonce app-state (atom {:text "Hello world!"}))
