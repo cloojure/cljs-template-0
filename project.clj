@@ -30,9 +30,9 @@
                                ;:libs                 ["resources"] ; works a 3rd way (why?)
                                ;:libs <missing completely> => compiler error
 
-                               :externs              ["dino-externs.js"]
+                               :externs              ["dino-externs.js" ]
                                :foreign-libs         [{:file     "dino.js"
-                                                       :provides ["dno"]}]
+                                                       :provides ["dno"]} ]
 
                                :asset-path           "js/compiled/out"
                                :output-to            "resources/public/js/compiled/fred.js"

@@ -1,39 +1,36 @@
 # fred
 
-FIXME: Write a one-line description of your library/project.
+A complete, working sample project to demonstrate working code with external JavaScript dependency
 
 ## Overview
 
-FIXME: Write a paragraph about the library/project and highlight its goals.
+Say you have a JavaScript library you need to include in a ClojureScript project.  We have an
+example file `dino.js` we wish to depend on.  The file `dino-externs.js` shows how to tell the
+Google Closure compiler about the dependency. The `project.clj` file shows the right syntax to make
+everything work as it should.
 
 ## Setup
 
+Project was created using `lein new figwheel`
+
+npm install phantomjs
+npm install karma karma-cljs-test  --save-dev  
+npm install karma-chrome-launcher  karma-firefox-launcher  karma-safari-launcher  --save-dev
+
 To get an interactive development environment run:
 
-    lein figwheel
+    lein clean ; lein figwheel
 
-and open your browser at [localhost:3449](http://localhost:3449/).
-This will auto compile and send all changes to the browser without the
-need to reload. After the compilation process is complete, you will
-get a Browser Connected REPL. An easy way to try it is:
-
-    (js/alert "Am I connected?")
-
-and you should see an alert in the browser window.
+A browser window will open. Go to the developer console
 
 To clean all compiled files:
 
     lein clean
 
-To create a production build run:
+## TODO
 
-    lein do clean, cljsbuild once min
-
-And open your browser in `resources/public/index.html`. You will not
-get live reloading, nor a REPL. 
+ - Add Doo testing lib stuff
 
 ## License
-
-Copyright © 2014 FIXME
 
 Distributed under the Eclipse Public License either version 1.0 or (at your option) any later version.
