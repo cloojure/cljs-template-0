@@ -4,8 +4,13 @@
                  [org.clojure/clojurescript "1.10.238"]
                  [org.clojure/core.async  "0.4.474"]]
 
-  :plugins [[lein-figwheel "0.5.15"]
-            [lein-cljsbuild "1.1.7" :exclusions [[org.clojure/clojure]]]]
+  :plugins [[lein-cljsbuild "1.1.7" :exclusions [[org.clojure/clojure]]]
+            [lein-doo "0.1.10"]
+            [lein-figwheel "0.5.15"]]
+
+  :doo {:build "test"  ; "dooit"
+        :paths {:karma   "./node_modules/karma/bin/karma"
+                :phantom "./node_modules/phantomjs/bin/phantomjs"}}
 
   :source-paths ["src"]
   :cljsbuild {:builds
