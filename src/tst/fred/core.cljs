@@ -11,7 +11,7 @@
   (let [result-7 (-> js/globalObject .-b (+ 5))
         greeting (-> (js/makeFriendly) .-message)]
     (println "(-> % .-b (+ 5) =>" result-7)
-    (println "(-> (js/makeFriendly) .-message) =>")
+    (println "(-> (js/makeFriendly) .-message) =>" greeting)
     (is (= 7 result-7))
     (is (= "Howdy!" greeting)))
 
