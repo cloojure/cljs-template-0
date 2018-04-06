@@ -11,11 +11,11 @@
   (let [result-7 (-> js/globalObject .-b (+ 5))
         dino     (js/makeDino)
         desc     (.-desc dino)
-        said     (.says dino)]
+        said     (.says dino 5)]
     (println "(-> % .-b (+ 5) =>" result-7)
     (println "(js/makeDino) =>" dino)
     (println "dino.desc => " desc)
-    (println "dino.says() => " said)
+    (println "dino.says(5) => " said)
     (is (= 7 result-7))
     (is (= desc "blue dino-dog"))
     (is (= said "Ruff-Ruff-Ruff-Ruff-Ruff!"))))

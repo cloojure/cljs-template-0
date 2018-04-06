@@ -33,6 +33,7 @@
                                :externs              ["dino-externs.js"]
                                :foreign-libs         [{:file     "dino.js"
                                                        :provides ["dno"]}]
+                               :optimizations        :none
 
                                :asset-path           "js/compiled/out"
                                :output-to            "resources/public/js/compiled/fred.js"
@@ -49,7 +50,7 @@
                                :externs              ["dino-externs.js"]
                                :foreign-libs         [{:file     "dino.js"
                                                        :provides ["dno"]}]
-                               :optimizations        :none
+                               :optimizations        :advanced
                                :output-to            "resources/public/js/compiled/wilma.js"
 
                                ; CRASHES if VVV these 2 lines are present VVV
@@ -58,9 +59,6 @@
                                ; CRASHES if ^^^ these 2 lines are present ^^^
 
                                :source-map-timestamp true
-                               ;; To console.log CLJS data-structures make sure you enable devtools in Chrome
-                               ;; https://github.com/binaryage/cljs-devtools
-                               :preloads             [devtools.preload]
                                }}
                ]}
 
