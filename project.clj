@@ -52,9 +52,10 @@
                                :optimizations        :none
                                :output-to            "resources/public/js/compiled/wilma.js"
 
-                               ; crashes if VVV these 2 items are present VVV
+                               ; CRASHES if VVV these 2 lines are present VVV
                                ;:asset-path           "js/compiled/tstout" ; DO NOT INCLUDE
                                ;:output-dir           "resources/public/js/compiled/tstout" ; DO NOT INCLUDE
+                               ; CRASHES if ^^^ these 2 lines are present ^^^
 
                                :source-map-timestamp true
                                ;; To console.log CLJS data-structures make sure you enable devtools in Chrome
