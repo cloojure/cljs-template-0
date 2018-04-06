@@ -2,13 +2,14 @@
   :min-lein-version "2.7.1"
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [org.clojure/clojurescript "1.10.238"]
-                 [org.clojure/core.async  "0.4.474"]]
+                 [org.clojure/core.async "0.4.474"]]
 
   :plugins [[lein-cljsbuild "1.1.7" :exclusions [[org.clojure/clojure]]]
             [lein-doo "0.1.10"]
             [lein-figwheel "0.5.15"]]
+  :hooks [leiningen.cljsbuild]
 
-  :doo {:build "test"  ; "dooit"
+  :doo {:build "test" ; "dooit"
         :paths {:karma   "./node_modules/karma/bin/karma"
                 :phantom "./node_modules/phantomjs/bin/phantomjs"}}
 
@@ -23,16 +24,15 @@
                                ;; Figwheel has started and compiled your application.  Comment this out
                                ;; once it no longer serves you.
                                :open-urls ["http://localhost:3449/index.html"]}
-
                 :compiler     {:main                 fred.core
                                ;:libs                 ["resources/public/dino.js"] ; works
                                ;:libs                 ["resources/public"] ; also works
                                ;:libs                 ["resources"] ; works a 3rd way (why?)
                                ;:libs <missing completely> => compiler error
 
-                               :externs              ["dino-externs.js" ]
+                               :externs              ["dino-externs.js"]
                                :foreign-libs         [{:file     "dino.js"
-                                                       :provides ["dno"]} ]
+                                                       :provides ["dno"]}]
 
                                :asset-path           "js/compiled/out"
                                :output-to            "resources/public/js/compiled/fred.js"
@@ -41,6 +41,26 @@
                                ;; To console.log CLJS data-structures make sure you enable devtools in Chrome
                                ;; https://github.com/binaryage/cljs-devtools
                                :preloads             [devtools.preload]}}
+
+               {:id           "test"
+                :source-paths ["src"]
+                :figwheel {:repl false}
+                :compiler     {:main                 tst.fred.doorunner
+                               :externs              ["dino-externs.js"]
+                               :foreign-libs         [{:file     "dino.js"
+                                                       :provides ["dno"]}]
+                               :optimizations        :none
+                               :output-to            "resources/public/js/compiled/wilma.js"
+
+                               ; crashes if VVV these 2 items are present VVV
+                               ;:asset-path           "js/compiled/tstout" ; DO NOT INCLUDE
+                               ;:output-dir           "resources/public/js/compiled/tstout" ; DO NOT INCLUDE
+
+                               :source-map-timestamp true
+                               ;; To console.log CLJS data-structures make sure you enable devtools in Chrome
+                               ;; https://github.com/binaryage/cljs-devtools
+                               :preloads             [devtools.preload]
+                               }}
                ]}
 
   :profiles {:dev {:dependencies  [[binaryage/devtools "0.9.9"]
@@ -53,4 +73,8 @@
                    :repl-options  {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
                    ;; need to add the compliled assets to the :clean-targets
                    :clean-targets ^{:protect false} ["resources/public/js/compiled"
-                                                     :target-path]}})
+                                                     :target-path]}}
+
+  ;:figwheel {:repl false}
+  :jvm-opts ["-Xmx1g"]
+  )

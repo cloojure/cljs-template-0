@@ -19,17 +19,22 @@ npm install karma-chrome-launcher  karma-firefox-launcher  karma-safari-launcher
 
 To get an interactive development environment run:
 
-    lein clean ; lein figwheel
+  lein clean ; lein figwheel
 
 A browser window will open. Go to the developer console
 
 To clean all compiled files:
 
-    lein clean
+  lein clean
+
+To run Doo tests:
+
+  lein clean ; lein doo phantom test once
 
 ## TODO
 
- - Add Doo testing lib stuff
+ - Add reagent stuff
+ - Add reframe stuff
 
 ## License
 
