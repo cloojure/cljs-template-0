@@ -1,2 +1,2 @@
 var globalObject = {}
-var makeFriendly = function() {}
+var makeDino = function() {}

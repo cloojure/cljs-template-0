@@ -7,10 +7,6 @@
 "This text is printed from src/fred/core.cljs.
 Go ahead and edit it and see reloading in action. Again, or not.")
 
-(println "globalObject:  " js/globalObject)
-(println "(-> % .-b (+ 5) =>" (-> js/globalObject .-b (+ 5)))
-(println "(-> (js/makeFriendly) .-message) =>" (-> (js/makeFriendly) .-message))
-
 ; define your app data so that it doesn't get over-written on reload
 (defonce app-state (atom {:text "Hello world!"}))
 
