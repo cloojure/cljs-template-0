@@ -30,14 +30,16 @@
                                ;:libs                 ["resources"] ; works a 3rd way (why?)
                                ;:libs <missing completely> => compiler error
 
-                               :externs              ["dino-externs.js"]
+                               :optimizations        :none
+                               :libs                 ["resources/public/wilma.js"]
+
                                :foreign-libs         [{:file     "dino.js"
                                                        :provides ["dno"]}]
-                               :optimizations        :none
+                               :externs              ["dino-externs.js"]
 
                                :asset-path           "js/compiled/out"
                                :output-to            "resources/public/js/compiled/fred.js"
-                               :output-dir           "resources/public/js/compiled/out"
+                               :output-dir           "resources/public/js/compiled/fred-out"
                                :source-map-timestamp true
                                ;; To console.log CLJS data-structures make sure you enable devtools in Chrome
                                ;; https://github.com/binaryage/cljs-devtools
@@ -52,6 +54,7 @@
                                                        :provides ["dno"]}]
                                :optimizations        :advanced
                                :output-to            "resources/public/js/compiled/wilma.js"
+                               :output-dir           "resources/public/js/compiled/wilma-out"
 
                                ; CRASHES if VVV these 2 lines are present VVV
                                ;:asset-path           "js/compiled/tstout" ; DO NOT INCLUDE
@@ -72,6 +75,7 @@
                    :repl-options  {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
                    ;; need to add the compliled assets to the :clean-targets
                    :clean-targets ^{:protect false} ["resources/public/js/compiled"
+                                                     "out"
                                                      :target-path]}}
 
   ;:figwheel {:repl false}
