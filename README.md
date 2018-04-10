@@ -21,7 +21,7 @@ To get an interactive development environment run:
 
   lein clean ; lein figwheel
 
-A browser window will open. Go to the developer console
+A browser window will open. Go to the developer console to view results.
 
 To clean all compiled files:
 
@@ -29,7 +29,8 @@ To clean all compiled files:
 
 To run Doo tests:
 
-  lein clean ; lein doo phantom test once
+  lein clean ; lein doo phantom test once   # run the tests once and exit
+  lein clean ; lein doo phantom test        # rerun the tests after every file edit
 
 ## TODO
 

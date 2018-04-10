@@ -6,9 +6,11 @@
 Go ahead and edit it and see reloading in action. Again, or not.")
 
 (do                 ; like a "unit test" w/o the Doo framework
-  (println "from fred.core:  js/pebblesInfo => " (pr-str js/pebblesInfo))
+  (println "demo of `pebbles.js` access (fred.core):")
+  (println "  js/pebblesInfo => " (pr-str js/pebblesInfo))
   (let [pebbles (js/makePebbles)]
-    (println "pebbles =>" (pr-str pebbles))
+    (println "  pebbles =>" (pr-str pebbles))
+    (println "  (.says pebbles 'Fred'): => " (pr-str (.says pebbles "Fred")))
     (assert (= (.-desc pebbles) "cute baby"))
     (assert (= (.says pebbles "Fred") "GaGa BoBo..."))))
 
