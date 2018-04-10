@@ -26,7 +26,7 @@
                                :open-urls ["http://localhost:3449/index.html"]}
                 :compiler     {:main                 fred.core
                                :optimizations        :none
-                              ;:asset-path           "js/compiled/fred-dev" ; rel to figwheel default of `resources/public`
+                               ;:asset-path           "js/compiled/fred-dev" ; rel to figwheel default of `resources/public`
                                :libs                 ["resources/public/libs"] ; recursive includes all children
 
                                :foreign-libs         [{:file     "dino.js"
@@ -42,10 +42,10 @@
 
                {:id           "test"
                 :source-paths ["src"]
-                :figwheel {:repl false}
+                :figwheel     {:repl false}
                 :compiler     {:main                 tst.fred.doorunner
                                :optimizations        :none ; :advanced
-                              ;:asset-path           "js/compiled/fred-tst" ; rel to figwheel default of `resources/public`
+                               ;:asset-path           "js/compiled/fred-tst" ; rel to figwheel default of `resources/public`
                                :libs                 ["resources/public/libs"] ; recursive includes all children
 
                                :foreign-libs         [{:file     "dino.js"
@@ -54,7 +54,6 @@
 
                                :output-to            "resources/public/js/compiled/fredtst.js"
                                :output-dir           "resources/public/js/compiled/fred-tst"
-
                                :source-map-timestamp true
                                }}
                ]}
