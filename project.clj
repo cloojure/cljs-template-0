@@ -25,21 +25,16 @@
                                ;; once it no longer serves you.
                                :open-urls ["http://localhost:3449/index.html"]}
                 :compiler     {:main                 fred.core
-                               ;:libs                 ["resources/public/dino.js"] ; works
-                               ;:libs                 ["resources/public"] ; also works
-                               ;:libs                 ["resources"] ; works a 3rd way (why?)
-                               ;:libs <missing completely> => compiler error
-
                                :optimizations        :none
-                               :libs                 ["resources/public/wilma.js"]
+                              ;:asset-path           "js/compiled/fred-dev" ; rel to figwheel default of `resources/public`
+                               :libs                 ["resources/public/libs"] ; recursive includes all children
 
                                :foreign-libs         [{:file     "dino.js"
                                                        :provides ["dno"]}]
                                :externs              ["dino-externs.js"]
 
-                               :asset-path           "js/compiled/out"
                                :output-to            "resources/public/js/compiled/fred.js"
-                               :output-dir           "resources/public/js/compiled/fred-out"
+                               :output-dir           "resources/public/js/compiled/fred-dev"
                                :source-map-timestamp true
                                ;; To console.log CLJS data-structures make sure you enable devtools in Chrome
                                ;; https://github.com/binaryage/cljs-devtools
@@ -49,17 +44,16 @@
                 :source-paths ["src"]
                 :figwheel {:repl false}
                 :compiler     {:main                 tst.fred.doorunner
-                               :externs              ["dino-externs.js"]
+                               :optimizations        :none ; :advanced
+                              ;:asset-path           "js/compiled/fred-tst" ; rel to figwheel default of `resources/public`
+                               :libs                 ["resources/public/libs"] ; recursive includes all children
+
                                :foreign-libs         [{:file     "dino.js"
                                                        :provides ["dno"]}]
-                               :optimizations        :advanced
-                               :output-to            "resources/public/js/compiled/wilma.js"
-                               :output-dir           "resources/public/js/compiled/wilma-out"
+                               :externs              ["dino-externs.js"]
 
-                               ; CRASHES if VVV these 2 lines are present VVV
-                               ;:asset-path           "js/compiled/tstout" ; DO NOT INCLUDE
-                               ;:output-dir           "resources/public/js/compiled/tstout" ; DO NOT INCLUDE
-                               ; CRASHES if ^^^ these 2 lines are present ^^^
+                               :output-to            "resources/public/js/compiled/fredtst.js"
+                               :output-dir           "resources/public/js/compiled/fred-tst"
 
                                :source-map-timestamp true
                                }}
