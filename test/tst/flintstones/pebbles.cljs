@@ -1,4 +1,4 @@
-(ns tst.fred.pebbles
+(ns tst.flintstones.pebbles
   (:require
     [cljs.test :refer-macros [deftest is async use-fixtures]]))
 (use-fixtures :once

@@ -1,4 +1,4 @@
-(ns tst.fred.dino
+(ns tst.flintstones.dino
   (:require
     [cljs.test :refer-macros [deftest is async use-fixtures]]
     [dinoPhony]))

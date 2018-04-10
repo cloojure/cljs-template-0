@@ -1,18 +1,18 @@
-(ns fred.core)
+(ns flintstones.core)
 
 (enable-console-print!)
 (println
-"This text is printed from src/fred/core.cljs.
+"This text is printed from src/flintstones/core.cljs.
 Go ahead and edit it and see reloading in action. Again, or not.")
 
 (do                 ; like a "unit test" w/o the Doo framework
-  (println "demo of `pebbles.js` access (fred.core):")
+  (println "demo of `pebbles.js` access (flintstones.core):")
   (println "  js/pebblesInfo => " (pr-str js/pebblesInfo))
   (let [pebbles (js/makePebbles)]
     (println "  pebbles =>" (pr-str pebbles))
     (println "  (.says pebbles 'Fred'): => " (pr-str (.says pebbles "Fred")))
     (assert (= (.-desc pebbles) "cute baby"))
-    (assert (= (.says pebbles "Fred") "GaGa BoBo..."))))
+    (assert (= (.says pebbles "Fred") "GaGa BooBoo..."))))
 
 
 ; define your app data so that it doesn't get over-written on reload

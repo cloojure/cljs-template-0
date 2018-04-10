@@ -5,7 +5,7 @@ makePebbles = function () {
   var pebbles = {};
   pebbles.desc = "cute baby";
   pebbles.says = function(name) {
-    result = "GaGa BoBo...";
+    result = "GaGa BooBoo...";
     return result };
   return pebbles;
 };

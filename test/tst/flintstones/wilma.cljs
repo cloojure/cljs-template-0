@@ -1,4 +1,4 @@
-(ns tst.fred.wilma
+(ns tst.flintstones.wilma
   (:require
     [cljs.test :refer-macros [deftest is async use-fixtures]]
     [wilmaPhony] ))
