@@ -1,7 +1,11 @@
 (ns tst.fred.dino
   (:require
-    [cljs.test :refer-macros [deftest is async]]
+    [cljs.test :refer-macros [deftest is async use-fixtures]]
     [dinoPhony]))
+
+(use-fixtures :once
+  {:before (fn [] (println "Beginning dino tests..."))
+   :after  (fn [] (println "Finished dino tests..."))})
 
 (deftest t-will-succeed (is (= 5 (+ 2 3))))
 ; (deftest t-will-fail (is (= 95 (+ 2 3))))

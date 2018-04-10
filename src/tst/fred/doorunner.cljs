@@ -2,14 +2,13 @@
   (:require
     [tst.fred.dino]
     [tst.fred.wilma]
+    [tst.fred.pebbles]
     [doo.runner :refer-macros [doo-tests]] ))
-
 (enable-console-print!)
-(println "tests - before")
+(println "doorunner - beginning")
+
 (doo-tests
   'tst.fred.dino
   'tst.fred.wilma
 )
-(println "tests - after")
-
-
+(println "doorunner - end")

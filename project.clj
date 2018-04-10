@@ -42,7 +42,6 @@
 
                {:id           "test"
                 :source-paths ["src"]
-                :figwheel     {:repl false}
                 :compiler     {:main                 tst.fred.doorunner
                                :optimizations        :none ; :advanced
                                ;:asset-path           "js/compiled/fred-tst" ; rel to figwheel default of `resources/public`
@@ -71,6 +70,6 @@
                                                      "out"
                                                      :target-path]}}
 
-  ;:figwheel {:repl false}
+  :figwheel {:repl true}
   :jvm-opts ["-Xmx1g"]
   )
