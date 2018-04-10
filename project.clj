@@ -5,8 +5,8 @@
                  [org.clojure/core.async "0.4.474"]]
 
   :plugins [[lein-cljsbuild "1.1.7" :exclusions [[org.clojure/clojure]]]
-            [lein-doo "0.1.10"]
-            [lein-figwheel "0.5.15"]]
+            [lein-figwheel "0.5.15"]
+            [lein-doo "0.1.10"]]
   :hooks [leiningen.cljsbuild]
 
   :doo {:build "test" ; "dooit"
@@ -26,7 +26,6 @@
                                :open-urls ["http://localhost:3449/index.html"]}
                 :compiler     {:main                 fred.core
                                :optimizations        :none
-                               ;:asset-path           "js/compiled/fred-dev" ; rel to figwheel default of `resources/public`
                                :libs                 ["resources/public/libs"] ; recursive includes all children
 
                                :foreign-libs         [{:file     "dino.js"
@@ -35,16 +34,17 @@
 
                                :output-to            "resources/public/js/compiled/fred.js"
                                :output-dir           "resources/public/js/compiled/fred-dev"
+                               :asset-path           "js/compiled/fred-dev" ; rel to figwheel default of `resources/public`
+                                                        ; ^^^ must match :output-dir
                                :source-map-timestamp true
                                ;; To console.log CLJS data-structures make sure you enable devtools in Chrome
                                ;; https://github.com/binaryage/cljs-devtools
                                :preloads             [devtools.preload]}}
 
                {:id           "test"
-                :source-paths ["src"]
+                :source-paths ["src" "test"]
                 :compiler     {:main                 tst.fred.doorunner
                                :optimizations        :none ; :advanced
-                               ;:asset-path           "js/compiled/fred-tst" ; rel to figwheel default of `resources/public`
                                :libs                 ["resources/public/libs"] ; recursive includes all children
 
                                :foreign-libs         [{:file     "dino.js"
@@ -53,6 +53,8 @@
 
                                :output-to            "resources/public/js/compiled/fredtst.js"
                                :output-dir           "resources/public/js/compiled/fred-tst"
+                               ;:asset-path           "js/compiled/fred-tst" ; rel to figwheel default of `resources/public`
+
                                :source-map-timestamp true
                                }}
                ]}
@@ -70,6 +72,5 @@
                                                      "out"
                                                      :target-path]}}
 
-  :figwheel {:repl true}
   :jvm-opts ["-Xmx1g"]
-  )
+)
