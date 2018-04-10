@@ -10,5 +10,6 @@
 (doo-tests
   'tst.fred.dino
   'tst.fred.wilma
+  'tst.fred.pebbles
 )
 (println "doorunner - end")

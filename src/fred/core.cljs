@@ -5,6 +5,14 @@
 "This text is printed from src/fred/core.cljs.
 Go ahead and edit it and see reloading in action. Again, or not.")
 
+(do                 ; like a "unit test" w/o the Doo framework
+  (println "from fred.core:  js/pebblesInfo => " (pr-str js/pebblesInfo))
+  (let [pebbles (js/makePebbles)]
+    (println "pebbles =>" (pr-str pebbles))
+    (assert (= (.-desc pebbles) "cute baby"))
+    (assert (= (.says pebbles "Fred") "GaGa BoBo..."))))
+
+
 ; define your app data so that it doesn't get over-written on reload
 (defonce app-state (atom {:text "Hello world!"}))
 

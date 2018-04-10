@@ -1,8 +1,12 @@
 (ns tst.fred.wilma
   (:require
-    [cljs.test :refer-macros [deftest is async]]
+    [cljs.test :refer-macros [deftest is async use-fixtures]]
     [wilmaPhony]
   ))
+
+(use-fixtures :each
+  {:before (fn [] (println "\nBeginning wilma tests..."))
+   :after  (fn [] (println "Finished wilma tests..."))})
 
 (deftest succeeder (is (= 3 (+ 2 1))))
 
