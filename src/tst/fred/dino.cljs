@@ -1,12 +1,12 @@
 (ns tst.fred.dino
   (:require
     [cljs.test :refer-macros [deftest is async]]
-    [dno]))
+    [dinoPhony]))
 
 (deftest t-will-succeed (is (= 5 (+ 2 3))))
 ; (deftest t-will-fail (is (= 95 (+ 2 3))))
 
-(deftest t-alan
+(deftest t-dino
   (println "globalObject:  " js/globalObject)
   (let [result-7 (-> js/globalObject .-b (+ 5))
         dino     (js/makeDino)

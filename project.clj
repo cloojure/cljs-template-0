@@ -30,7 +30,7 @@
                                :libs                 ["resources/public/libs"] ; recursive includes all children
 
                                :foreign-libs         [{:file     "dino.js"
-                                                       :provides ["dno"]}]
+                                                       :provides ["dinoPhony"]}]
                                :externs              ["dino-externs.js"]
 
                                :output-to            "resources/public/js/compiled/fred.js"
@@ -49,7 +49,7 @@
                                :libs                 ["resources/public/libs"] ; recursive includes all children
 
                                :foreign-libs         [{:file     "dino.js"
-                                                       :provides ["dno"]}]
+                                                       :provides ["dinoPhony"]}]
                                :externs              ["dino-externs.js"]
 
                                :output-to            "resources/public/js/compiled/fredtst.js"

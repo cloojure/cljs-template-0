@@ -1,8 +1,6 @@
-(ns fred.core
-    (:require [dno] ))
+(ns fred.core)
 
 (enable-console-print!)
-
 (println
 "This text is printed from src/fred/core.cljs.
 Go ahead and edit it and see reloading in action. Again, or not.")
