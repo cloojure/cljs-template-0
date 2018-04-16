@@ -9,7 +9,7 @@
             [lein-doo "0.1.10"]]
   :hooks [leiningen.cljsbuild]
 
-  :doo {:build "test" ; "dooit"
+  :doo {:build "test"
         :paths {:karma   "node_modules/karma/bin/karma"
                 :phantom "node_modules/phantomjs/bin/phantomjs"}}
 
