@@ -10,8 +10,8 @@
   :hooks [leiningen.cljsbuild]
 
   :doo {:build "test" ; "dooit"
-        :paths {:karma   "./node_modules/karma/bin/karma"
-                :phantom "./node_modules/phantomjs/bin/phantomjs"}}
+        :paths {:karma   "node_modules/karma/bin/karma"
+                :phantom "node_modules/phantomjs/bin/phantomjs"}}
 
   :source-paths ["src"]
   :cljsbuild {:builds
