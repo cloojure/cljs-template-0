@@ -1,10 +1,11 @@
 (ns tst.flintstones.wilma
-  (:require
-    [flintstones.cljs.test :refer-macros  [dotest is isnt is= isnt= testing use-fixtures]]
+  (:require-macros
+    [flintstones.cljs.test :refer  [dotest is isnt is= isnt= testing use-fixtures]])
     ; #todo #awt If forget to list a macro here get an error like:
     ;     FAIL in   (dotest-line-13) (TypeError:NaN:NaN)
     ;     failed with TypeError: Cannot read property 'call' of undefined
     ;     message: Uncaught exception, not in assertion.
+  (:require
     [wilmaPhony]
   ))
 
