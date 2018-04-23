@@ -13,7 +13,7 @@
    :after  (fn [] (println "Finished wilma tests..."))})
 
 (dotest
-  (is (= 3 (+ 2 1))))
+  (is= 3 (+ 2 1)))
 
 (dotest
   (println "wilmaPhony/stats:   " wilmaPhony/stats)
