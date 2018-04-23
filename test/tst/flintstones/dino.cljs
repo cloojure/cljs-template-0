@@ -23,4 +23,3 @@
     (is (= 7 result-7))
     (is (= desc "blue dino-dog"))
     (is (= said "Ruff-Ruff-Ruff-Ruff-Ruff!"))))
-

@@ -32,6 +32,10 @@ To run Doo tests:
   lein clean ; lein doo phantom test once   # run the tests once and exit
   lein clean ; lein doo phantom test        # rerun the tests after every file edit
 
+You can also test in the Chrome browser:
+  
+  lein clean ; lein doo chrome  test once
+  
 ## TODO
 
  - Add reagent stuff
