@@ -1,12 +1,12 @@
-(ns flintstones.util
+(ns flintstones.cljs.test
   (:require
-    [cljs.test :as ct] ))
+     [cljs.test :as ct]
+  ))
 
-(defmacro use-fixtures [& forms] `(ct/use-fixtures ~@forms))
-
-(defmacro deftest [& forms] `(ct/deftest ~@forms))
-(defmacro testing [& forms] `(ct/testing ~@forms))
-(defmacro is [& forms] `(ct/is ~@forms))
+(defmacro use-fixtures  [& forms] `(ct/use-fixtures ~@forms))
+(defmacro deftest       [& forms] `(ct/deftest ~@forms))
+(defmacro testing       [& forms] `(ct/testing ~@forms))
+(defmacro is            [& forms] `(ct/is ~@forms))
 
 (defmacro dotest [& body] ; #todo README & tests
   (let [test-name-sym (symbol (str "dotest-line-" (:line (meta &form))))]
