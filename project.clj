@@ -9,10 +9,11 @@
             [lein-figwheel "0.5.15"]
             [lein-doo "0.1.10"]]
 
-  :doo {:build "test"
+  :doo {:karma {:config {"plugins"       ["karma-junit-reporter"]
+                         "reporters"     ["progress" "junit"]
+                         "junitReporter" {"outputDir" "target/test-results"}}}
         :paths {:karma   "node_modules/karma/bin/karma"
-                :phantom "node_modules/phantomjs/bin/phantomjs"}}
-
+                :phantom "node_modules/phantomjs/bin/phantomjs" }}
   :source-paths ["src"]
   :cljsbuild {:builds
               [{:id           "dev"
@@ -55,9 +56,7 @@
                                :output-dir           "resources/public/js/compiled/bedrock-tst"
                                ;:asset-path           "js/compiled/bedrock-tst" ; rel to figwheel default of `resources/public`
 
-                               :source-map-timestamp true
-                               }}
-               ]}
+                               :source-map-timestamp true}}]}
 
   :profiles {:dev {:dependencies  [[binaryage/devtools "0.9.9"]
                                    [figwheel-sidecar "0.5.15"]
@@ -72,5 +71,4 @@
                                                      "out"
                                                      :target-path]}}
 
-  :jvm-opts ["-Xmx1g"]
-)
+  :jvm-opts ["-Xmx1g"])

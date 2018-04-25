@@ -13,9 +13,9 @@ everything work as it should.
 
 Project was created using `lein new figwheel`
 
-npm install phantomjs
-npm install karma karma-cljs-test  --save-dev  
-npm install karma-chrome-launcher  karma-firefox-launcher  karma-safari-launcher  --save-dev
+Prior to running, you must install NodeJS dependencies:
+
+  ./npm-install.bash    # => downloads npm modules (saved in `./node_modules` dir)
 
 To get an interactive development environment run:
 
@@ -25,12 +25,13 @@ A browser window will open. Go to the developer console to view results.
 
 To clean all compiled files:
 
-  lein clean
+  lein clean    # very important if build crashes & corrupt output files remain
 
 To run Doo tests:
 
-  lein clean ; lein doo phantom test once   # run the tests once and exit
-  lein clean ; lein doo phantom test        # rerun the tests after every file edit
+  lein doo  phantom  test once    # run the tests once and exit (note: not `phantomjs`)
+  lein doo  phantom  test         # rerun the tests after every file edit
+  lein doo  chrome   test         # can also test using Chrome browser
 
 You can also test in the Chrome browser:
   
@@ -44,4 +45,3 @@ You can also test in the Chrome browser:
 ## License
 
 Distributed under the Eclipse Public License either version 1.0 or (at your option) any later version.
-
