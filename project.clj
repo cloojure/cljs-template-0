@@ -1,9 +1,7 @@
 (defproject flintstones "0.1.0-SNAPSHOT"
   :min-lein-version "2.7.1"
   :dependencies [[org.clojure/clojure "1.9.0"]
-                 [org.clojure/clojurescript "1.10.238"]
-                 [org.clojure/core.async "0.4.474"]
-                ]
+                 [org.clojure/clojurescript "1.10.238"] ]
   :plugins [[lein-cljsbuild "1.1.7" :exclusions [[org.clojure/clojure]]]
             [lein-figwheel "0.5.15"]
             [lein-doo "0.1.10"]]
@@ -57,17 +55,18 @@
 
                                :source-map-timestamp true}}]}
 
-  :profiles {:dev {:dependencies  [[binaryage/devtools "0.9.9"]
-                                   [figwheel-sidecar "0.5.15"]
-                                   [com.cemerick/piggieback "0.2.2"]]
+  :profiles {:dev {:dependencies  [[figwheel-sidecar "0.5.15"] ]
                    ;; need to add dev source path here to get user.clj loaded
                    :source-paths  ["src" "dev"]
-                   ;; for CIDER
-                   ;; :plugins [[cider/cider-nrepl "0.12.0"]]
-                   :repl-options  {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
                    ;; need to add the compliled assets to the :clean-targets
                    :clean-targets ^{:protect false} ["resources/public/js/compiled"
                                                      "out"
                                                      :target-path]}}
 
-  :jvm-opts ["-Xmx1g"])
+  ; automatically handle `--add-modules` stuff req'd for Java 9 & Java 10
+  :jvm-opts #=(eval (into ["-Xmx1g"]
+                      (let [version-str (System/getProperty "java.version")]
+                        (if (or (= "10" version-str) (re-find #"^9\." version-str))
+                          ["--add-modules" "java.xml.bind"] ; needed for java 9 or 10
+                          [])))) ; java 8 or below
+  )
