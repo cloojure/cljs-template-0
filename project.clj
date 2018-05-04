@@ -11,7 +11,7 @@
                          "reporters"     ["progress" "junit"]
                          "junitReporter" {"outputDir" "target/test-results"}}}
         :paths {:karma   "node_modules/karma/bin/karma"
-                :phantom "node_modules/phantomjs/bin/phantomjs" }}
+                :phantom "node_modules/phantomjs/bin/phantomjs"}}
   :source-paths ["src"]
   :cljsbuild {:builds
               [{:id           "dev"
@@ -36,7 +36,7 @@
                                :output-dir           "resources/public/js/compiled/flintstones-dev"
                                :asset-path           "js/compiled/flintstones-dev" ; rel to figwheel default of `resources/public`
                                ;                       ^^^^^ must match :output-dir
-                               :source-map-timestamp true }}
+                               :source-map-timestamp true}}
                {:id           "test"
                 :source-paths ["src" "test"]
                 :compiler     {:main                 tst.flintstones.doorunner
@@ -55,13 +55,10 @@
 
                                :source-map-timestamp true}}]}
 
-  :profiles {:dev {:dependencies  [[figwheel-sidecar "0.5.15"]]
-                   :source-paths  ["src" "dev"]    ; need to add dev source path here to get user.clj loaded
-                   ;; need to add the compliled assets to the :clean-targets
-                   :clean-targets ^{:protect false} ["resources/public/js/compiled"
-                                                     "out"
-                                                     :target-path]
-                   }}
+  ; need to add the compliled assets to the :clean-targets
+  :clean-targets ^{:protect false} ["resources/public/js/compiled"
+                                    "out"
+                                    :target-path]
 
   ; automatically handle `--add-modules` stuff req'd for Java 9 & Java 10
   :jvm-opts #=(eval (into ["-Xmx1g"]
