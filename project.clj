@@ -50,7 +50,7 @@
 
                                :output-to            "resources/public/js/compiled/bedrock.js"
                                :output-dir           "resources/public/js/compiled/bedrock-tst"
-                               ;:asset-path           "js/compiled/bedrock-tst"  ; not used for testing
+                               ; :asset-path           "js/compiled/bedrock-tst"  ; not used for testing
                                ; ^^^ rel to figwheel default of `resources/public`
 
                                :source-map-timestamp true}}]}
