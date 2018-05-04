@@ -35,13 +35,8 @@
                                :output-to            "resources/public/js/compiled/flintstones.js"
                                :output-dir           "resources/public/js/compiled/flintstones-dev"
                                :asset-path           "js/compiled/flintstones-dev" ; rel to figwheel default of `resources/public`
-                               ;                     ^^^^^ must match :output-dir
-                               :source-map-timestamp true
-                               ; To console.log CLJS data-structures make sure you enable devtools in Chrome
-                               ; https://github.com/binaryage/cljs-devtools
-                               ; :preloads             [devtools.preload]
-                               }}
-
+                               ;                       ^^^^^ must match :output-dir
+                               :source-map-timestamp true }}
                {:id           "test"
                 :source-paths ["src" "test"]
                 :compiler     {:main                 tst.flintstones.doorunner
