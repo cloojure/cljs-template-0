@@ -26,6 +26,7 @@
                                :optimizations        :none
                                :libs                 ["resources/public/libs"] ; recursive includes all children
 
+                               ; figwheel server has implicit path `resources/public`, leave off here
                                :foreign-libs         [{:file     "dino.js"
                                                        :provides ["dinoPhony"]}]
                                :externs              ["dino-externs.js"]
@@ -34,10 +35,7 @@
                                :output-dir           "resources/public/js/compiled/flintstones-dev"
                                :asset-path           "js/compiled/flintstones-dev" ; rel to figwheel default of `resources/public`
                                                         ; ^^^ must match :output-dir
-                               :source-map-timestamp true
-                               ;; To console.log CLJS data-structures make sure you enable devtools in Chrome
-                               ;; https://github.com/binaryage/cljs-devtools
-                               :preloads             [devtools.preload]}}
+                               :source-map-timestamp true }}
 
                {:id           "test"
                 :source-paths ["src" "test"]
@@ -45,9 +43,10 @@
                                :optimizations        :none ; :advanced
                                :libs                 ["resources/public/libs"] ; recursive includes all children
 
-                               :foreign-libs         [{:file     "dino.js"
+                               ; tests run w/o figwheel server, so need to explicitely add path `resources/public` here
+                               :foreign-libs         [{:file     "resources/public/dino.js"
                                                        :provides ["dinoPhony"]}]
-                               :externs              ["dino-externs.js"]
+                               :externs              ["resources/public/dino-externs.js"]
 
                                :output-to            "resources/public/js/compiled/bedrock.js"
                                :output-dir           "resources/public/js/compiled/bedrock-tst"
