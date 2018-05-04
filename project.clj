@@ -16,12 +16,12 @@
   :cljsbuild {:builds
               [{:id           "dev"
                 :source-paths ["src"]
-                ;; The presence of a :figwheel configuration here will cause figwheel to inject the
-                ;; figwheel client into your build
+                ; The presence of a :figwheel configuration here will cause figwheel to inject the
+                ; figwheel client into your build
                 :figwheel     {:on-jsload "flintstones.core/on-js-reload"
-                               ;; :open-urls will pop open your application in the default browser once
-                               ;; Figwheel has started and compiled your application.  Comment this out
-                               ;; once it no longer serves you.
+                               ; :open-urls will pop open your application in the default browser once
+                               ; Figwheel has started and compiled your application.  Comment this out
+                               ; once it no longer serves you.
                                :open-urls ["http://localhost:3449/index.html"]}
                 :compiler     {:main                 flintstones.core
                                :optimizations        :none
