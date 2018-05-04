@@ -4,7 +4,7 @@
 (println
 "This text is printed from src/flintstones/core.cljs.
 Go ahead and edit it and see reloading in action. Again, or not.")
-(println "new printout")
+(println "<<< replace this text >>>")
 
 ;(do                 ; like a "unit test" w/o the Doo framework
 ;  (println "demo of `pebbles.js` access (flintstones.core):")

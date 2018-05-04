@@ -1,7 +1,8 @@
 (defproject flintstones "0.1.0-SNAPSHOT"
   :min-lein-version "2.7.1"
   :dependencies [[org.clojure/clojure "1.9.0"]
-                 [org.clojure/clojurescript "1.10.238"] ]
+                 [org.clojure/clojurescript "1.10.238"]
+                 [tupelo "0.9.76"]]
   :plugins [[lein-cljsbuild "1.1.7" :exclusions [[org.clojure/clojure]]]
             [lein-figwheel "0.5.15"]
             [lein-doo "0.1.10"]]
@@ -34,9 +35,8 @@
                                :output-to            "resources/public/js/compiled/flintstones.js"
                                :output-dir           "resources/public/js/compiled/flintstones-dev"
                                :asset-path           "js/compiled/flintstones-dev" ; rel to figwheel default of `resources/public`
-                                                        ; ^^^ must match :output-dir
+                               ;                       ^^^^^ must match :output-dir
                                :source-map-timestamp true }}
-
                {:id           "test"
                 :source-paths ["src" "test"]
                 :compiler     {:main                 tst.flintstones.doorunner
@@ -50,17 +50,18 @@
 
                                :output-to            "resources/public/js/compiled/bedrock.js"
                                :output-dir           "resources/public/js/compiled/bedrock-tst"
-                               ;:asset-path           "js/compiled/bedrock-tst" ; rel to figwheel default of `resources/public`
+                               ;:asset-path           "js/compiled/bedrock-tst"  ; not used for testing
+                               ; ^^^ rel to figwheel default of `resources/public`
 
                                :source-map-timestamp true}}]}
 
-  :profiles {:dev {:dependencies  [[figwheel-sidecar "0.5.15"] ]
-                   ;; need to add dev source path here to get user.clj loaded
-                   :source-paths  ["src" "dev"]
+  :profiles {:dev {:dependencies  [[figwheel-sidecar "0.5.15"]]
+                   :source-paths  ["src" "dev"]    ; need to add dev source path here to get user.clj loaded
                    ;; need to add the compliled assets to the :clean-targets
                    :clean-targets ^{:protect false} ["resources/public/js/compiled"
                                                      "out"
-                                                     :target-path]}}
+                                                     :target-path]
+                   }}
 
   ; automatically handle `--add-modules` stuff req'd for Java 9 & Java 10
   :jvm-opts #=(eval (into ["-Xmx1g"]
