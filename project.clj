@@ -3,7 +3,7 @@
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [org.clojure/clojurescript "1.10.238"]
                  [org.clojure/core.async "0.4.474"]
-                 [tupelo "0.9.76"]
+                ;[tupelo "0.9.76"]
                 ]
   :plugins [[lein-cljsbuild "1.1.7" :exclusions [[org.clojure/clojure]]]
             [lein-figwheel "0.5.15"]
@@ -37,10 +37,7 @@
                                :output-dir           "resources/public/js/compiled/flintstones-dev"
                                :asset-path           "js/compiled/flintstones-dev" ; rel to figwheel default of `resources/public`
                                                         ; ^^^ must match :output-dir
-                               :source-map-timestamp true
-                               ;; To console.log CLJS data-structures make sure you enable devtools in Chrome
-                               ;; https://github.com/binaryage/cljs-devtools
-                               :preloads             [devtools.preload]}}
+                               :source-map-timestamp true }}
 
                {:id           "test"
                 :source-paths ["src" "test"]
@@ -57,18 +54,12 @@
                                ;:asset-path           "js/compiled/bedrock-tst" ; rel to figwheel default of `resources/public`
 
                                :source-map-timestamp true}}]}
-
-  :profiles {:dev {:dependencies  [[binaryage/devtools "0.9.9"]
-                                   [figwheel-sidecar "0.5.15"]
-                                   [com.cemerick/piggieback "0.2.2"]]
-                   ;; need to add dev source path here to get user.clj loaded
-                   :source-paths  ["src" "dev"]
-                   ;; for CIDER
-                   ;; :plugins [[cider/cider-nrepl "0.12.0"]]
-                   :repl-options  {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
-                   ;; need to add the compliled assets to the :clean-targets
+  :profiles {:dev {:source-paths  ["src" "dev"] ; need to add dev source path here to get user.clj loaded
+                   ; need to add the compliled assets to the :clean-targets
                    :clean-targets ^{:protect false} ["resources/public/js/compiled"
                                                      "out"
                                                      :target-path]}}
 
-  :jvm-opts ["-Xmx1g"])
+ ;:jvm-opts ["-Xmx1g" "--add-modules" "java.xml.bind"]  ; needed for Java 9/Java 10
+  :jvm-opts ["-Xmx1g"] ; Java 8
+  )
