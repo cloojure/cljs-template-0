@@ -1,7 +1,5 @@
 (ns flintstones.cljs.test
-  (:require
-     [cljs.test :as ct]
-  ))
+  (:require [cljs.test :as ct] ))
 
 (defmacro use-fixtures  [& forms] `(ct/use-fixtures ~@forms))
 (defmacro deftest       [& forms] `(ct/deftest ~@forms))
