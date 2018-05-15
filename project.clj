@@ -2,6 +2,7 @@
   :min-lein-version "2.7.1"
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [org.clojure/clojurescript "1.10.238"]
+                 [reagent "0.8.1"]
                  [tupelo "0.9.76"]]
   :plugins [[lein-cljsbuild "1.1.7" :exclusions [[org.clojure/clojure]]]
             [lein-figwheel "0.5.15"]
