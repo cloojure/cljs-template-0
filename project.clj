@@ -5,7 +5,7 @@
                  [reagent "0.8.1"]
                  [tupelo "0.9.76"]]
   :plugins [[lein-cljsbuild "1.1.7" :exclusions [[org.clojure/clojure]]]
-            [lein-figwheel "0.5.15"]
+            [lein-figwheel "0.5.16"]
             [lein-doo "0.1.10"]]
 
   :doo {:karma {:config {"plugins"       ["karma-junit-reporter"]
@@ -62,9 +62,5 @@
                                     :target-path]
 
   ; automatically handle `--add-modules` stuff req'd for Java 9 & Java 10
-  :jvm-opts #=(eval (into ["-Xmx1g"]
-                      (let [version-str (System/getProperty "java.version")]
-                        (if (or (= "10" version-str) (re-find #"^9\." version-str))
-                          ["--add-modules" "java.xml.bind"] ; needed for java 9 or 10
-                          [])))) ; java 8 or below
+  :jvm-opts ["-Xmx1g"]
   )
