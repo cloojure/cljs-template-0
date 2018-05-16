@@ -1,8 +1,10 @@
 (defproject flintstones "0.1.0-SNAPSHOT"
   :min-lein-version "2.7.1"
-  :dependencies [[org.clojure/clojure "1.9.0"]
+  :dependencies [[binaryage/oops "0.6.2"]
+                 [org.clojure/clojure "1.9.0"]
                  [org.clojure/clojurescript "1.10.238"]
                  [reagent "0.8.1"]
+                 [reagent-utils "0.3.1"]
                  [tupelo "0.9.76"]]
   :plugins [[lein-cljsbuild "1.1.7" :exclusions [[org.clojure/clojure]]]
             [lein-figwheel "0.5.16"]
@@ -19,7 +21,7 @@
                 :source-paths ["src"]
                 ; The presence of a :figwheel configuration here will cause figwheel to inject the
                 ; figwheel client into your build
-                :figwheel     {:on-jsload "flintstones.core/on-js-reload"
+                :figwheel     {:on-jsload "flintstones.core/figwheel-reload"
                                ; :open-urls will pop open your application in the default browser once
                                ; Figwheel has started and compiled your application.  Comment this out
                                ; once it no longer serves you.
