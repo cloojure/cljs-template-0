@@ -29,7 +29,10 @@ Go ahead and edit it and see reloading in action. Again, or not.")
 (defn curr-states-list []
   [:div {:id :states-keep}
    (for [state @states-curr]
-     ^{:key state} [:div {:on-click #(println "clicked:" state)} state])] )
+     ^{:key state} [:div {:on-click ; #(println "clicked:" state)
+                          #(let [elem (js/document.getElementById "myInput")]
+                             (oops/oset! elem "value" state)) }
+                    state ])] )
 
 (defn simple-component []
   [:div
@@ -40,22 +43,14 @@ Go ahead and edit it and see reloading in action. Again, or not.")
 
    [:form           ; {:autoComplete "off" }
     [:div {:class     "autocomplete" :style {:width "300px"}
-           :on-change ;#(println "value=" (-> % .-target .-value))
-           (fn [arg]
-             (println)
-             (let [curr-text   (-> arg .-target .-value)
-                   repat       (re-pattern (str "(?i)\\b\\w*" curr-text "\\w*\\b"))
-                   keep?       (fn [state] (re-find repat state))
-                   states-keep (vec (filter keep? states-all)) ]
-               (println "states-keep = " states-keep)
-               (reset! states-curr states-keep) ))
-          }
-
-     ;(let [
-     ;      ]
-     ;  (prn :keep-words keep-words)
-     ;  (prn :re-seq (re-seq tgt-word-re "I am having some fun today"))
-     ;  )
+           :on-change (fn [arg]
+                        (println)
+                        (let [curr-text   (-> arg .-target .-value)
+                              repat       (re-pattern (str "(?i)\\b\\w*" curr-text "\\w*\\b"))
+                              keep?       (fn [state] (re-find repat state))
+                              states-keep (vec (filter keep? states-all)) ]
+                          (println "states-keep = " states-keep)
+                          (reset! states-curr states-keep))) }
 
      [:input {:id "myInput" :type "text" :name "myCountry" :placeholder "Country"} ]]
      [curr-states-list]
@@ -64,7 +59,11 @@ Go ahead and edit it and see reloading in action. Again, or not.")
 (defonce counter (atom 0))
 
 (defn run []
-  (r/render [simple-component] (js/document.getElementById "tgt-div")))
+  (r/render [simple-component] (js/document.getElementById "tgt-div"))
+  (let [elem  (js/document.getElementById "myInput")]
+    (println "elem=" elem)
+    (oops/oset! elem "value" "abc")
+    ))
 
 (defn figwheel-reload []
   ; optionally touch your app-state to force rerendering depending on your application
