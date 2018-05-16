@@ -14,24 +14,25 @@ Go ahead and edit it and see reloading in action. Again, or not.")
 (def states-all
   ["Alabama" "Alaska" "Arizona" "Arkansas" "California"
    "Colorado" "Connecticut" "Delaware" "Florida" "Georgia" "Hawaii"
-   ;"Idaho" "Illinois" "Indiana" "Iowa" "Kansas" "Kentucky" "Louisiana"
-   ;"Maine" "Maryland" "Massachusetts" "Michigan" "Minnesota"
-   ;"Mississippi" "Missouri" "Montana" "Nebraska" "Nevada" "New Hampshire"
-   ;"New Jersey" "New Mexico" "New York" "North Carolina" "North Dakota"
-   ;"Ohio" "Oklahoma" "Oregon" "Pennsylvania" "Rhode Island"
-   ;"South Carolina" "South Dakota" "Tennessee" "Texas" "Utah" "Vermont"
-   ;"Virginia" "Washington" "West Virginia" "Wisconsin" "Wyoming"
+   "Idaho" "Illinois" "Indiana" "Iowa" "Kansas" "Kentucky" "Louisiana"
+   "Maine" "Maryland" "Massachusetts" "Michigan" "Minnesota"
+   "Mississippi" "Missouri" "Montana" "Nebraska" "Nevada" "New Hampshire"
+   "New Jersey" "New Mexico" "New York" "North Carolina" "North Dakota"
+   "Ohio" "Oklahoma" "Oregon" "Pennsylvania" "Rhode Island"
+   "South Carolina" "South Dakota" "Tennessee" "Texas" "Utah" "Vermont"
+   "Virginia" "Washington" "West Virginia" "Wisconsin" "Wyoming"
    ])
 
 
-(def states-curr (r/atom states-all))
+(def states-curr (r/atom []))
 
 (defn curr-states-list []
   [:div {:id :states-keep}
-   (for [state @states-curr]
+   (for [state (take 10 @states-curr)]
      ^{:key state} [:div {:on-click ; #(println "clicked:" state)
                           #(let [elem (js/document.getElementById "myInput")]
-                             (oops/oset! elem "value" state)) }
+                             (oops/oset! elem "value" state)
+                             (reset! states-curr []) ) }
                     state ])] )
 
 (defn simple-component []
@@ -41,14 +42,16 @@ Go ahead and edit it and see reloading in action. Again, or not.")
     "I have " [:strong "bold"]
     [:span {:style {:color "red"}} " and red"] " text."]
 
-   [:form           ; {:autoComplete "off" }
+   [:form {:autoComplete "off" }
     [:div {:class     "autocomplete" :style {:width "300px"}
            :on-change (fn [arg]
                         (println)
                         (let [curr-text   (-> arg .-target .-value)
                               repat       (re-pattern (str "(?i)\\b\\w*" curr-text "\\w*\\b"))
                               keep?       (fn [state] (re-find repat state))
-                              states-keep (vec (filter keep? states-all)) ]
+                              states-keep (if (pos? (count curr-text))
+                                            (vec (filter keep? states-all))
+                                            []) ]
                           (println "states-keep = " states-keep)
                           (reset! states-curr states-keep))) }
 
@@ -59,11 +62,7 @@ Go ahead and edit it and see reloading in action. Again, or not.")
 (defonce counter (atom 0))
 
 (defn run []
-  (r/render [simple-component] (js/document.getElementById "tgt-div"))
-  (let [elem  (js/document.getElementById "myInput")]
-    (println "elem=" elem)
-    (oops/oset! elem "value" "abc")
-    ))
+  (r/render [simple-component] (js/document.getElementById "tgt-div")))
 
 (defn figwheel-reload []
   ; optionally touch your app-state to force rerendering depending on your application
