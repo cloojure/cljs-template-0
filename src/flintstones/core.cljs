@@ -24,15 +24,18 @@ Go ahead and edit it and see reloading in action. Again, or not.")
    ])
 
 
-(def states-curr (r/atom []))
+(def states-curr
+  "The current list of (autocomplete) states to display"
+  (r/atom []))
 
-(defn curr-states-list []
+(defn states-autocomplete-list []
   [:div {:id :states-keep}
    (for [state (take 10 @states-curr)]
-     ^{:key state} [:div {:on-click ; #(println "clicked:" state)
+     ^{:key state} [:div {:on-click
                           #(let [elem (js/document.getElementById "myInput")]
                              (oops/oset! elem "value" state)
-                             (reset! states-curr []) ) }
+                             (reset! states-curr []) )
+                          :style nil}   ; <= replace with anything
                     state ])] )
 
 (defn simple-component []
@@ -56,7 +59,7 @@ Go ahead and edit it and see reloading in action. Again, or not.")
                           (reset! states-curr states-keep))) }
 
      [:input {:id "myInput" :type "text" :name "myCountry" :placeholder "Country"} ]]
-     [curr-states-list]
+     [states-autocomplete-list]
      [:input {:type "submit"}] ] ])
 
 (defonce counter (atom 0))
