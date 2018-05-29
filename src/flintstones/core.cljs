@@ -26,7 +26,6 @@ Go ahead and edit it and see reloading in action. Again, or not.")
   "The current list of (autocomplete) states to display"
   (r/atom []))
 (def states-curr-max-display 10)
-
 (defn states-autocomplete-list []
   [:ul {:id :states-keep}
    (let [list-items (vec (for [state (take states-curr-max-display @states-curr)]
