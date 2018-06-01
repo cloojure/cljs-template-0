@@ -1,6 +1,7 @@
 (defproject flintstones "0.1.0-SNAPSHOT"
   :min-lein-version "2.7.1"
   :dependencies [[binaryage/oops "0.6.2"]
+                 [garden "1.3.5"]
                  [org.clojure/clojure "1.9.0"]
                  [org.clojure/clojurescript "1.10.238"]
                  [reagent "0.8.1"]

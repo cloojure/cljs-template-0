@@ -1,15 +1,23 @@
 (ns flintstones.core
   (:require
+    [clojure.string :as str]
+    [garden.core :as garden]
+    [goog.style :as style]
     [oops.core :as oops]
     [reagent.core :as r]
-    [reagent.format :as rf]
-    [clojure.string :as str] ))
+    [reagent.format :as rf] ))
 
 (enable-console-print!)
 (println
 "This text is printed from src/flintstones/core.cljs.
 Go ahead and edit it and see reloading in action. Again, or not.")
 (println " Hello World! " )
+(let [s1 (garden/css [:body {:font-size "16px"}])
+      s2 (garden/css [:p.someClass {:font-size "25px" :color :hotpink}]) ]
+  (println "Garden s1:  " (pr-str s1))
+  (println "Garden s2:  " (pr-str s2))
+  (println "Install Result: " (style/installStyles s2))
+)
 
 (def states-all
   ["Alabama" "Alaska" "Arizona" "Arkansas" "California"
@@ -53,6 +61,9 @@ Go ahead and edit it and see reloading in action. Again, or not.")
      (seq list-items)                   ; reagent needs a seq here; will fail if return a vector
    )])
 
+(defn css-comp []
+  [:p.someClass "I am a CSS hamster!"])
+
 (defn simple-component []
   [:div
    [:p "I am a component!"]
@@ -74,7 +85,9 @@ Go ahead and edit it and see reloading in action. Again, or not.")
 
      [:input {:id "myInput" :type "text" :name "myState" :placeholder "State"} ]]
      [states-autocomplete-list]
-     [:input {:type "submit"}] ] ])
+     [:input {:type "submit"}] ]
+   [css-comp]
+   ])
 
 (defonce counter (atom 0))
 
