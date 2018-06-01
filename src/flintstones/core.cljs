@@ -13,7 +13,8 @@
 Go ahead and edit it and see reloading in action. Again, or not.")
 (println " Hello World! " )
 (let [s1 (garden/css [:body {:font-size "16px"}])
-      s2 (garden/css [:p.someClass {:font-size "25px" :color :hotpink}]) ]
+      s2 (garden/css [:p.someClass {:font-size "25px" :color :RebeccaPurple}]) ; https://codepen.io/trezy/post/honoring-a-great-man
+     ]
   (println "Garden s1:  " (pr-str s1))
   (println "Garden s2:  " (pr-str s2))
   (println "Install Result: " (style/installStyles s2))
