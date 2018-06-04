@@ -1,11 +1,10 @@
 (ns flintstones.core
   (:require
-    [clojure.string :as str]
     [garden.core :as garden]
     [goog.style :as style]
     [oops.core :as oops]
     [reagent.core :as r]
-    [reagent.format :as rf] ))
+))
 
 (enable-console-print!)
 (println
