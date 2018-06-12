@@ -1,16 +1,16 @@
 (ns tst.flintstones.dino
+  (:require-macros [flintstones.cljs.test :refer  [dotest is isnt is= isnt= testing use-fixtures]])
   (:require
-    [cljs.test :refer-macros [deftest is async use-fixtures]]
     [dinoPhony]))
 
 (use-fixtures :once
   {:before (fn [] (println "Beginning dino tests..."))
    :after  (fn [] (println "Finished dino tests..."))})
 
-(deftest t-will-succeed (is (= 5 (+ 2 3))))
+(dotest (is= 5 (+ 2 3)))
 ; (deftest t-will-fail (is (= 95 (+ 2 3))))
 
-(deftest t-dino
+(dotest
   (println "globalObject:  " js/globalObject)
   (let [result-7 (-> js/globalObject .-b (+ 5))
         dino     (js/makeDino)
@@ -20,6 +20,19 @@
     (println "(js/makeDino) =>" dino)
     (println "dino.desc => " desc)
     (println "dino.says(5) => " said)
-    (is (= 7 result-7))
-    (is (= desc "blue dino-dog"))
-    (is (= said "Ruff-Ruff-Ruff-Ruff-Ruff!"))))
+    (is= 7 result-7)
+    (is= desc "blue dino-dog")
+    (is= said "Ruff-Ruff-Ruff-Ruff-Ruff!")))
+
+(dotest
+  (let [tgt-word-re #"\b\w*a\w*\b"
+        words       ["I" "am" "having" "some" "fun" "today"]
+        keep?       (fn [word] (re-find tgt-word-re word))
+        keep-words  (filter keep? words)
+        ]
+    (prn :keep-words keep-words)
+    (prn :re-seq (re-seq tgt-word-re "I am having some fun today"))
+    )
+
+  (is= 3 (+ 2 1))
+  )
