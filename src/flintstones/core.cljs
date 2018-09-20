@@ -31,6 +31,7 @@ Go ahead and edit it and see reloading in action. Again, or not.")
    (let [list-items (vec (for [state (take states-curr-max-display @states-curr)]
                            ^{:key state} [:li {:on-click #(let [elem (js/document.getElementById "myInput")]
                                                             (oops/oset! elem :value state)
+                                                            ; or (goog.object/set! #js {:foo 1} :bar 2)  ; #todo test this
                                                             (reset! states-curr []))
                                                :class    [:states-list] ; <= replace with anything
                                                :style    {; :color :cyan
